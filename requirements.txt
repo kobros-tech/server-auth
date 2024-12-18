@@ -1,2 +1,7 @@
 # generated from manifests external_dependencies
+email_validator
+lxml
+pysaml2
+cryptography
+pyjwt==2.0.0
 python-jose
