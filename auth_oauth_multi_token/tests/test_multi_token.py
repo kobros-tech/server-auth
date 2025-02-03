@@ -80,10 +80,12 @@ class TestMultiToken(TransactionCase):
             len(self.user.oauth_access_token_ids), self.user.oauth_access_max_token
         )
 
-    def test_remove_oauth_access_token(self):
+    def test_oauth_access_token_odoo_sh(self):
+        # do not change the _get_session_token_fields
+        # result to stay compatible with odoo.sh
         res = self.user._get_session_token_fields()
-        self.assertFalse("oauth_access_token" in res)
-        self.assertTrue("oauth_master_uuid" in res)
+        self.assertTrue("oauth_access_token" in res)
+        self.assertFalse("oauth_master_uuid" in res)
 
     def test_action_oauth_clear_token(self):
         self.user.action_oauth_clear_token()
