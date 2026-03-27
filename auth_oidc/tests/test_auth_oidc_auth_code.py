@@ -253,7 +253,7 @@ class TestAuthOIDCAuthorizationCodeFlow(common.HttpCase):
         self.assertEqual(logs.records[0].levelno, logging.ERROR)
         self.assertEqual(
             "ERROR:odoo.addons.auth_oidc.models.res_users:user_id claim not found in"
-            " id_token (after mapping).",
+            " id_token.",
             logs.output[0],
         )
 
