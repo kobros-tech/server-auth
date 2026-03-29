@@ -36,9 +36,9 @@ class ResUsers(models.Model):
         return super().auth_oauth(provider, params)
 
     @api.model
-    def _generate_signup_values(self, provider, validation, params):
-        values = super()._generate_signup_values(provider, validation, params)
-        # If Odoo couldn't find an email, use the GitHub login/username
-        if not values.get("login") and validation.get("login"):
-            values["login"] = validation["login"]
-        return values
+    def _auth_oauth_validate(self, provider, access_token):
+        validation = super()._auth_oauth_validate(provider, access_token)
+        # If Odoo couldn't find an email, use the login/username
+        if not validation.get("email") and validation.get("login"):
+            validation["email"] = validation["login"]
+        return validation
